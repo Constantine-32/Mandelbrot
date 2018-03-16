@@ -1,2 +1,2 @@
 # Mandelbrot
-Mandelbrot set represented with processing.
+Mandelbrot set represented with p5.js
