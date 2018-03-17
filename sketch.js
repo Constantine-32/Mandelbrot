@@ -36,12 +36,9 @@ function setup() {
     }
   }
   updatePixels()
+  noLoop()
 }
 
 function windowResized() {
   centerCanvas()
-}
-
-function draw() {
-
 }
