@@ -1,9 +1,9 @@
 'use strict';
 
-const col = 800;
-const row = 600;
-const ite = 100;
-const zom = 0.00375;
+const col = 800
+const row = 600
+const ite = 100
+const zom = 0.00375
 
 let cnv
 
