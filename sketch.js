@@ -1,33 +1,42 @@
 'use strict';
 
-const col = 800
-const row = 600
 const ite = 100
 const zom = 0.00375
 
-let cnv
-
-function centerCanvas() {
-  let x = (windowWidth - width) / 2
-  let y = (windowHeight - height) / 2
-  cnv.position(x, y)
+function setup() {
+  createCenteredCanvas()
+  noLoop()
 }
 
-function setup() {
-  cnv = createCanvas(col, row)
-  centerCanvas()
+function windowResized() {
+  createCenteredCanvas()
+  draw()
+}
+
+function createCenteredCanvas() {
+  // const size =
+  //   (windowWidth <= 540 || windowHeight <= 630) +
+  //   (windowWidth <= 960 || windowHeight <= 800)
+  // const w = [800, 600, 400][size]
+  // const h = [600, 450, 300][size]
+  createCanvas(800, 600).position(
+    (windowWidth - width) / 2,
+    (windowHeight - height) / 2
+  )
+}
+
+function draw() {
   background(255, 0, 200)
-  let a, b, ac, bc, aa, bb
-  for (let y = 0; y < row; y++) {
-    for (let x = 0; x < col; x++) {
-      a = map(x, 0, col - 1, -col * zom / 3 * 2, col * zom / 3)
-      b = map(y, 0, row - 1, -row * zom / 2, row * zom / 2)
-      ac = a
-      bc = b
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let a = map(x, 0, width - 1, -width * zom / 3 * 2, width * zom / 3)
+      let b = map(y, 0, height - 1, -height * zom / 2, height * zom / 2)
+      let ac = a
+      let bc = b
       let n = 0
       while (n < ite && (abs(a + b) < 1600000)) {
-        aa = a * a - b * b
-        bb = 2 * a * b
+        let aa = a * a - b * b
+        let bb = 2 * a * b
         a = aa + ac
         b = bb + bc
         n++
@@ -36,9 +45,4 @@ function setup() {
     }
   }
   updatePixels()
-  noLoop()
-}
-
-function windowResized() {
-  centerCanvas()
 }
